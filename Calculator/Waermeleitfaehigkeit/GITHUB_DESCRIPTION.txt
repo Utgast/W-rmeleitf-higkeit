@@ -1,0 +1,34 @@
+REPOSITORY DESCRIPTION (für GitHub Settings):
+=============================================
+
+Short Description (max 350 characters):
+---------------------------------------
+Professional IEC 60287 cable thermal analysis calculator for HVDC projects. Calculate conductor temperature, ampacity, and thermal profiles with validated scientific accuracy. Features standalone web interface with ARCADIS branding. Implements IEC 60287-1-1 and IEC 60287-2-1 standards.
+
+Topics/Tags:
+------------
+cable-engineering
+iec-60287
+thermal-analysis
+hvdc
+power-cables
+ampacity-calculation
+arcadis
+electrical-engineering
+python
+web-application
+chart-js
+cable-rating
+thermal-modeling
+power-systems
+engineering-tools
+
+Website (optional):
+-------------------
+https://www.arcadis.com
+
+Social Preview Text:
+--------------------
+IEC 60287 Cable Thermal Calculator - ARCADIS Engineering Edition
+Calculate cable ampacity, conductor temperature, and thermal profiles according to international standards. 
+Validated calculations | Web-based interface | HVDC projects
