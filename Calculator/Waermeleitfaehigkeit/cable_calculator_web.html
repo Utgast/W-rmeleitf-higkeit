@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEC 60287 Kabel-Wärmeberechnung</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #FF6600 0%, #CC5200 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #FF6600 0%, #CC5200 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        
+        header::after {
+            content: '';
+            display: block;
+            margin: 20px auto 0;
+            width: 60px;
+            height: 3px;
+            background: white;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+        
+        .input-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            height: fit-content;
+        }
+        
+        .section-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #FF6600;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #FF6600;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .input-group select,
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        .input-group select:focus,
+        .input-group input:focus {
+            outline: none;
+            border-color: #FF6600;
+        }
+        
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 25px;
+        }
+        
+        button {
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6600 0%, #CC5200 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 102, 0, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .btn-full {
+            grid-column: 1 / -1;
+        }
+        
+        .results-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .result-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #FF6600;
+        }
+        
+        .result-card h3 {
+            color: #FF6600;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .result-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .result-item label {
+            display: block;
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .result-item .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .result-item .unit {
+            font-size: 0.9em;
+            color: #666;
+            margin-left: 5px;
+        }
+        
+        .chart-container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+            height: 550px;
+        }
+        
+        .chart-container h3 {
+            color: #FF6600;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        canvas {
+            max-width: 100%;
+            height: 450px !important;
+            height: 400px;
+        }
+        
+        .status-ok {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .status-warning {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .layer-info {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .layer-info h4 {
+            color: #FF6600;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .layer-item {
+            padding: 10px;
+            border-left: 3px solid #FF6600;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+        }
+        
+        .layer-item strong {
+            color: #333;
+        }
+        
+        .layer-item small {
+            display: block;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>IEC 60287 Kabel-Wärmeberechnung</h1>
+            <p>ARCADIS | Wissenschaftlich validierte thermische Analyse</p>
+            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.9;">Improving Quality of Life</p>
+        </header>
+        
+        <div class="main-content">
+            <!-- Eingabebereich -->
+            <div class="input-section">
+                <div class="section-title">Kabelkonfiguration</div>
+                
+                <div class="input-group">
+                    <label>Vordefiniertes Kabel:</label>
+                    <select id="cableType" onchange="loadCable()">
+                        <option value="MV240">MV 240mm² Cu/XLPE 20kV</option>
+                        <option value="HV630">HV 630mm² Cu/XLPE 110kV</option>
+                    </select>
+                </div>
+                
+                <div class="section-title" style="margin-top: 30px;">Betriebsparameter</div>
+                
+                <div class="input-group">
+                    <label>Strom [A]:</label>
+                    <input type="number" id="current" value="400" step="10">
+                </div>
+                
+                <div class="input-group">
+                    <label>Umgebungstemperatur [°C]:</label>
+                    <input type="number" id="ambientTemp" value="20" step="1">
+                </div>
+                
+                <div class="input-group">
+                    <label>Max. Leitertemperatur [°C]:</label>
+                    <input type="number" id="maxTemp" value="90" step="1">
+                </div>
+                
+                <div class="section-title" style="margin-top: 30px;">Externe Umgebung</div>
+                
+                <div class="input-group">
+                    <label>Erdreich-Wärmeleitfähigkeit [W/(m·K)]:</label>
+                    <input type="number" id="soilLambda" value="1.0" step="0.1">
+                </div>
+                
+                <div class="input-group">
+                    <label>Verlegetiefe (äquiv. Radius) [m]:</label>
+                    <input type="number" id="burialDepth" value="1.0" step="0.1">
+                </div>
+                
+                <div class="button-group">
+                    <button class="btn-primary" onclick="calculate()">Berechnen</button>
+                    <button class="btn-primary" onclick="calculateAmpacity()">Ampacity</button>
+                    <button class="btn-secondary btn-full" onclick="reset()">Zurücksetzen</button>
+                </div>
+                
+                <div class="layer-info" id="layerInfo">
+                    <h4>Kabelschichten</h4>
+                    <div id="layersList"></div>
+                </div>
+            </div>
+            
+            <!-- Ergebnisbereich -->
+            <div class="results-section">
+                <div class="result-card">
+                    <h3>Berechnungsergebnisse</h3>
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <label>Leitertemperatur</label>
+                            <div class="value" id="conductorTemp">--</div>
+                            <span class="unit">°C</span>
+                        </div>
+                        <div class="result-item">
+                            <label>Temperaturanstieg</label>
+                            <div class="value" id="tempRise">--</div>
+                            <span class="unit">K</span>
+                        </div>
+                        <div class="result-item">
+                            <label>Verlustleistung</label>
+                            <div class="value" id="losses">--</div>
+                            <span class="unit">W/m</span>
+                        </div>
+                        <div class="result-item">
+                            <label>Thermischer Widerstand</label>
+                            <div class="value" id="thermalR">--</div>
+                            <span class="unit">K·m/W</span>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 8px;">
+                        <strong>Status:</strong> <span id="status">Bereit für Berechnung</span>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Temperaturprofil</h3>
+                    <canvas id="tempChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script>
+        // Kabeldaten
+        const cables = {
+            MV240: {
+                name: "MV 240mm² Cu/XLPE 20kV",
+                layers: [
+                    {name: "Conductor (Cu)", inner: 0, outer: 8.7, lambda: 380, rho: 0.0175, alpha: 0.00393},
+                    {name: "Conductor Screen", inner: 8.7, outer: 9.4, lambda: 0.286},
+                    {name: "Insulation (XLPE)", inner: 9.4, outer: 14.9, lambda: 0.286},
+                    {name: "Insulation Screen", inner: 14.9, outer: 15.6, lambda: 0.286},
+                    {name: "Metallic Screen (Cu)", inner: 15.6, outer: 17.1, lambda: 380},
+                    {name: "Outer Sheath (PE)", inner: 17.1, outer: 19.6, lambda: 0.4}
+                ],
+                maxTemp: 90
+            },
+            HV630: {
+                name: "HV 630mm² Cu/XLPE 110kV",
+                layers: [
+                    {name: "Conductor (Cu)", inner: 0, outer: 14.2, lambda: 380, rho: 0.0175, alpha: 0.00393},
+                    {name: "Conductor Screen", inner: 14.2, outer: 15.2, lambda: 0.286},
+                    {name: "Insulation (XLPE)", inner: 15.2, outer: 33.2, lambda: 0.286},
+                    {name: "Insulation Screen", inner: 33.2, outer: 34.2, lambda: 0.286},
+                    {name: "Metallic Screen (Cu)", inner: 34.2, outer: 36.2, lambda: 380},
+                    {name: "Outer Sheath (PE)", inner: 36.2, outer: 40.2, lambda: 0.4}
+                ],
+                maxTemp: 90
+            }
+        };
+        
+        let currentCable = cables.MV240;
+        let chart = null;
+        
+        // Initialisierung
+        loadCable();
+        
+        function loadCable() {
+            const type = document.getElementById('cableType').value;
+            currentCable = cables[type];
+            document.getElementById('maxTemp').value = currentCable.maxTemp;
+            
+            // Schichten anzeigen
+            let html = '';
+            currentCable.layers.forEach((layer, i) => {
+                html += `
+                    <div class="layer-item">
+                        <strong>${i+1}. ${layer.name}</strong>
+                        <small>Radien: ${layer.inner.toFixed(1)} - ${layer.outer.toFixed(1)} mm</small>
+                        <small>λ = ${layer.lambda.toFixed(3)} W/(m·K)</small>
+                    </div>
+                `;
+            });
+            document.getElementById('layersList').innerHTML = html;
+        }
+        
+        function calculateElectricalResistance(layer, temp) {
+            if (!layer.rho) return 0;
+            const area = Math.PI * (layer.outer * layer.outer - layer.inner * layer.inner);
+            const r20 = layer.rho / area; // Ohm/m
+            return r20 * (1 + layer.alpha * (temp - 20));
+        }
+        
+        function calculateThermalResistance(layer) {
+            if (layer.inner === 0) return 0;
+            const rhoTh = 1.0 / layer.lambda;
+            return rhoTh * Math.log(layer.outer / layer.inner) / (2 * Math.PI);
+        }
+        
+        function calculate() {
+            const current = parseFloat(document.getElementById('current').value);
+            const ambientTemp = parseFloat(document.getElementById('ambientTemp').value);
+            const maxTemp = parseFloat(document.getElementById('maxTemp').value);
+            const soilLambda = parseFloat(document.getElementById('soilLambda').value);
+            const burialDepth = parseFloat(document.getElementById('burialDepth').value);
+            
+            // Iterative Berechnung
+            let tConductor = maxTemp;
+            let losses = 0;
+            
+            for (let iter = 0; iter < 10; iter++) {
+                // Verluste im Leiter
+                const conductor = currentCable.layers[0];
+                const rElec = calculateElectricalResistance(conductor, tConductor);
+                losses = current * current * rElec;
+                
+                // Thermischer Widerstand
+                let rThermal = 0;
+                currentCable.layers.forEach(layer => {
+                    rThermal += calculateThermalResistance(layer);
+                });
+                
+                // Externe Umgebung
+                const cableOuter = currentCable.layers[currentCable.layers.length - 1].outer;
+                const earthOuter = burialDepth * 1000;
+                rThermal += (1/soilLambda) * Math.log(earthOuter / cableOuter) / (2 * Math.PI);
+                
+                // Neue Leitertemperatur
+                const tNew = ambientTemp + losses * rThermal;
+                
+                if (Math.abs(tNew - tConductor) < 0.1) {
+                    tConductor = tNew;
+                    break;
+                }
+                tConductor = tNew;
+            }
+            
+            // Ergebnisse anzeigen
+            document.getElementById('conductorTemp').textContent = tConductor.toFixed(2);
+            document.getElementById('tempRise').textContent = (tConductor - ambientTemp).toFixed(2);
+            document.getElementById('losses').textContent = losses.toFixed(2);
+            
+            const rThermalTotal = currentCable.layers.reduce((sum, layer) => 
+                sum + calculateThermalResistance(layer), 0) + 
+                (1/soilLambda) * Math.log(burialDepth * 1000 / currentCable.layers[currentCable.layers.length-1].outer) / (2 * Math.PI);
+            document.getElementById('thermalR').textContent = rThermalTotal.toFixed(4);
+            
+            // Status
+            if (tConductor > maxTemp) {
+                document.getElementById('status').innerHTML = 
+                    `<span class="status-warning">WARNUNG - Überschreitung um ${(tConductor - maxTemp).toFixed(1)} K</span>`;
+            } else {
+                document.getElementById('status').innerHTML = 
+                    `<span class="status-ok">OK - Reserve: ${(maxTemp - tConductor).toFixed(1)} K</span>`;
+            }
+            
+            // Temperaturprofil plotten
+            plotTemperatureProfile(current, ambientTemp, losses);
+        }
+        
+        function calculateAmpacity() {
+            const ambientTemp = parseFloat(document.getElementById('ambientTemp').value);
+            const maxTemp = parseFloat(document.getElementById('maxTemp').value);
+            const soilLambda = parseFloat(document.getElementById('soilLambda').value);
+            const burialDepth = parseFloat(document.getElementById('burialDepth').value);
+            
+            // Binäre Suche
+            let iMin = 0, iMax = 10000;
+            
+            for (let iter = 0; iter < 20; iter++) {
+                const iTest = (iMin + iMax) / 2;
+                
+                // Temperatur bei iTest berechnen
+                let tConductor = maxTemp;
+                for (let j = 0; j < 5; j++) {
+                    const conductor = currentCable.layers[0];
+                    const rElec = calculateElectricalResistance(conductor, tConductor);
+                    const losses = iTest * iTest * rElec;
+                    
+                    let rThermal = 0;
+                    currentCable.layers.forEach(layer => {
+                        rThermal += calculateThermalResistance(layer);
+                    });
+                    
+                    const cableOuter = currentCable.layers[currentCable.layers.length - 1].outer;
+                    rThermal += (1/soilLambda) * Math.log(burialDepth * 1000 / cableOuter) / (2 * Math.PI);
+                    
+                    tConductor = ambientTemp + losses * rThermal;
+                }
+                
+                if (Math.abs(tConductor - maxTemp) < 0.5) break;
+                
+                if (tConductor > maxTemp) {
+                    iMax = iTest;
+                } else {
+                    iMin = iTest;
+                }
+            }
+            
+            const iFinal = (iMin + iMax) / 2;
+            document.getElementById('current').value = iFinal.toFixed(1);
+            
+            // Berechnung mit neuem Strom
+            calculate();
+        }
+        
+        function plotTemperatureProfile(current, ambientTemp, losses) {
+            const radii = [];
+            const temps = [];
+            
+            let currentTemp = parseFloat(document.getElementById('conductorTemp').textContent);
+            
+            currentCable.layers.forEach(layer => {
+                radii.push(layer.inner);
+                temps.push(currentTemp);
+                
+                const rTh = calculateThermalResistance(layer);
+                currentTemp -= losses * rTh;
+                
+                radii.push(layer.outer);
+                temps.push(currentTemp);
+            });
+            
+            if (chart) chart.destroy();
+            
+            const ctx = document.getElementById('tempChart').getContext('2d');
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: radii,
+                    datasets: [{
+                        label: 'Temperaturverlauf',
+                        data: temps,
+                        borderColor: '#FF6600',
+                        backgroundColor: 'rgba(255, 102, 0, 0.15)',
+                        borderWidth: 4,
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#FF6600',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointHoverRadius: 8
+                    }, {
+                        label: 'Max. Temperatur',
+                        data: Array(radii.length).fill(parseFloat(document.getElementById('maxTemp').value)),
+                        borderColor: '#dc3545',
+                        borderWidth: 3,
+                        borderDash: [10, 5],
+                        fill: false,
+                        pointRadius: 0
+                    }, {
+                        label: 'Umgebung',
+                        data: Array(radii.length).fill(ambientTemp),
+                        borderColor: '#28a745',
+                        borderWidth: 3,
+                        borderDash: [10, 5],
+                        fill: false,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: 14,
+                                    weight: 'bold',
+                                    family: 'Arial, sans-serif'
+                                },
+                                padding: 15,
+                                usePointStyle: true
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Temperaturprofil im Kabel (IEC 60287)',
+                            font: {
+                                size: 18,
+                                weight: 'bold',
+                                family: 'Arial, sans-serif'
+                            },
+                            padding: 20,
+                            color: '#333'
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            padding: 12,
+                            titleFont: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                size: 13
+                            },
+                            callbacks: {
+                                title: function(context) {
+                                    return 'Radius: ' + context[0].label + ' mm';
+                                },
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y.toFixed(2) + ' °C';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Radius [mm]',
+                                font: {
+                                    size: 15,
+                                    weight: 'bold',
+                                    family: 'Arial, sans-serif'
+                                },
+                                color: '#333'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)',
+                                lineWidth: 1
+                            },
+                            ticks: {
+                                font: {
+                                    size: 12
+                                },
+                                color: '#666'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Temperatur [°C]',
+                                font: {
+                                    size: 15,
+                                    weight: 'bold',
+                                    family: 'Arial, sans-serif'
+                                },
+                                color: '#333'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)',
+                                lineWidth: 1
+                            },
+                            ticks: {
+                                font: {
+                                    size: 12
+                                },
+                                color: '#666'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function reset() {
+            document.getElementById('current').value = 400;
+            document.getElementById('ambientTemp').value = 20;
+            document.getElementById('maxTemp').value = 90;
+            document.getElementById('soilLambda').value = 1.0;
+            document.getElementById('burialDepth').value = 1.0;
+            document.getElementById('cableType').value = 'MV240';
+            
+            document.getElementById('conductorTemp').textContent = '--';
+            document.getElementById('tempRise').textContent = '--';
+            document.getElementById('losses').textContent = '--';
+            document.getElementById('thermalR').textContent = '--';
+            document.getElementById('status').textContent = 'Bereit für Berechnung';
+            
+            if (chart) chart.destroy();
+            loadCable();
+        }
+    </script>
+</body>
+</html>
