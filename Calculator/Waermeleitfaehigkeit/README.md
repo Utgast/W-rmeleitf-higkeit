@@ -1,9 +1,9 @@
-# IEC 60287 Cable Thermal Calculator
+#  IEC 60287 Cable Thermal Calculator
 ## ARCADIS Engineering Edition
 
 Professional cable thermal analysis tool implementing IEC 60287-1-1 and IEC 60287-2-1 standards for calculating cable ampacity, conductor temperature, and thermal profiles. Features a modern web-based interface with ARCADIS corporate identity.
 
-## ⚡ Key Features
+## Key Features
 
 - **IEC 60287 Compliant Calculations**: Full implementation of international cable rating standards
 - **Interactive Web Interface**: Standalone HTML application with Chart.js visualization
@@ -17,7 +17,7 @@ Professional cable thermal analysis tool implementing IEC 60287-1-1 and IEC 6028
 - **Python Core Engine**: Validated calculation engine with scientific accuracy
 - **Material Database**: Comprehensive thermal properties for cable materials (XLPE, EPR, PVC, Copper, Aluminum)
 
-## 🎯 Calculations
+## Calculations
 
 ### Supported Analyses
 - **Conductor Temperature**: Iterative calculation with temperature-dependent resistance
@@ -29,7 +29,7 @@ Professional cable thermal analysis tool implementing IEC 60287-1-1 and IEC 6028
 - **Cable Spacing Optimization**: Finds optimal distance between cables for maximum current capacity
 - **Grouping Factors**: Derating factors for cable installations with multiple circuits
 
-## 📊 Technical Standards
+## Technical Standards
 
 This calculator implements:
 - **IEC 60287-1-1**: Electric cables - Calculation of the current rating (100% load factor)
@@ -48,11 +48,11 @@ Power Losses:          W = I² × R(T)
 U = 1 / (Rsi + R1 + R2 + ... + Rse)
 ```
 
-## 🛠️ Entwickelt für ARCADIS
+## Entwickelt für ARCADIS
 Ingenieuranwendung für thermische Berechnungen und Analysen.
 
-## 📄 Lizenz
-## 🚀 Quick Start
+## Lizenz
+## Quick Start
 
 ### Web Application (Recommended)
 Simply open `cable_calculator_web.html` in any modern web browser. No installation required!
@@ -77,7 +77,7 @@ pip install -r requirements.txt
 python cable_model_iec60287.py
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Waermeleitfaehigkeit/
@@ -93,7 +93,7 @@ Waermeleitfaehigkeit/
 └── README.md                         # This file
 ```
 
-## 🎨 ARCADIS Corporate Identity
+## ARCADIS Corporate Identity
 
 The web interface features:
 - **Primary Color**: ARCADIS Orange (#FF6600)
@@ -101,7 +101,7 @@ The web interface features:
 - **Tagline**: "Improving Quality of Life"
 - Professional gradient backgrounds and styling
 
-## ✅ Validation
+## Validation
 
 All calculations have been validated against:
 - IEC 60287 standard examples
@@ -109,15 +109,15 @@ All calculations have been validated against:
 - Scientific literature (10+ peer-reviewed papers)
 
 **Test Results:**
-- 240mm² Cu/XLPE @ 400A → 32.4°C conductor temperature ✓
-- 240mm² Cu/XLPE ampacity → 830A @ 90°C max ✓
-- 630mm² Cu/XLPE ampacity → 1338A @ 90°C max ✓
-- Temperature profile monotonically decreasing ✓
-- Mutual heating: 3 cables @ 0.5m spacing → middle cable +5.5K ✓
-- Cable spacing optimization: 3 cables optimal distance 1.8m ✓
-- Grouping factor @ 0.3m: 0.488 (51% derating) ✓
+- 240mm² Cu/XLPE @ 400A → 32.4°C conductor temperature [PASS]
+- 240mm² Cu/XLPE ampacity → 830A @ 90°C max [PASS]
+- 630mm² Cu/XLPE ampacity → 1338A @ 90°C max [PASS]
+- Temperature profile monotonically decreasing [PASS]
+- Mutual heating: 3 cables @ 0.5m spacing → middle cable +5.5K [PASS]
+- Cable spacing optimization: 3 cables optimal distance 1.8m [PASS]
+- Grouping factor @ 0.3m: 0.488 (51% derating) [PASS]
 
-## 📖 Usage Example
+## Usage Example
 
 ```python
 from cable_model_iec60287 import create_mv_cable_240mm2_xlpe
@@ -136,10 +136,15 @@ print(f"Conductor: {cable.layers[0].temperature:.2f}°C")
 
 # Calculate maximum current rating
 max_current = cable.calculate_max_current(max_temp=90)
-print(f"Ampacity: {max_current:.0f}A")
+print(f"Max current: {max_current:.0f}A")
 ```
 
-## 🔬 Technical Background
+## Technical Background
+
+This calculator is based on:
+```
+
+## Technical Background
 
 Developed for HVDC (HGÜ) cable projects requiring accurate thermal analysis for:
 - Cable route planning
@@ -147,7 +152,7 @@ Developed for HVDC (HGÜ) cable projects requiring accurate thermal analysis for
 - Ampacity verification
 - Temperature monitoring
 
-## 📄 License
+## License
 
 © 2025 ARCADIS - Internal Engineering Tool
 

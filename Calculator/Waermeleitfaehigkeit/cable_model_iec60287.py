@@ -100,7 +100,7 @@ class CableConfiguration:
             raise ValueError("Keine Schichten definiert")
         return self.layers[0]
     
-    def calculate_conductor_losses(self, temperature: float = None) -> float:
+    def calculate_conductor_losses(self, temperature: float | None = None) -> float:
         """
         Berechnet Verlustleistung im Leiter nach IEC 60287-1-1 Gleichung (1)
         W_c = I² × R_ac(T)
@@ -154,6 +154,11 @@ class CableConfiguration:
         """
         # Starttemperatur
         t_conductor = self.max_conductor_temp
+        
+        # Initialisierung für Robustheit
+        losses = 0.0
+        r_thermal = 0.0
+        iteration = 0
         
         # Iterative Berechnung (max 10 Iterationen)
         for iteration in range(10):
@@ -488,7 +493,7 @@ def validate_iec60287_formulas():
     assert 25 < t_conductor < 60, f"Leitertemperatur unrealistisch: {t_conductor}°C"
     assert details['losses_W_per_m'] > 0, "Verlustleistung muss positiv sein"
     assert 0.5 < details['thermal_resistance_K_m_W'] < 3.0, "Thermischer Widerstand unrealistisch"
-    print("✅ Test 1 bestanden")
+    print("[PASS] Test 1 bestanden")
     
     # Test 2: Ampacity Berechnung
     print("\n[TEST 2] Ampacity Berechnung (max. zulässiger Strom)")
@@ -506,7 +511,7 @@ def validate_iec60287_formulas():
     
     # Typische Werte für 240mm² Cu: 400-900A je nach Verlegung
     assert 300 < i_max < 1000, f"Ampacity unrealistisch: {i_max}A"
-    print("✅ Test 2 bestanden")
+    print("[PASS] Test 2 bestanden")
     
     # Test 3: Temperaturprofil
     print("\n[TEST 3] Temperaturprofil über Kabelschichten")
@@ -528,7 +533,7 @@ def validate_iec60287_formulas():
         assert temp <= prev_temp + 0.1, "Temperatur muss nach außen fallen!"
         prev_temp = temp
     
-    print("✅ Test 3 bestanden - Temperatur fällt korrekt von innen nach außen")
+    print("[PASS] Test 3 bestanden - Temperatur fällt korrekt von innen nach außen")
     
     # Test 4: Hochspannungskabel
     print("\n[TEST 4] 630mm² Cu/XLPE Hochspannungskabel")
@@ -544,17 +549,17 @@ def validate_iec60287_formulas():
     
     # Typische Werte für 630mm² Cu: 800-1200A
     assert 600 < i_max_hv < 1500, f"HV Ampacity unrealistisch: {i_max_hv}A"
-    print("✅ Test 4 bestanden")
+    print("[PASS] Test 4 bestanden")
     
     print("\n" + "=" * 80)
-    print("✅ ALLE VALIDIERUNGEN ERFOLGREICH")
+    print("[PASS] ALLE VALIDIERUNGEN ERFOLGREICH")
     print("=" * 80)
     print("\nZusammenfassung:")
-    print(f"- Wärmefluss: Leiter → Außen ✅")
-    print(f"- Temperaturabhängiger Widerstand: R(T) = R₂₀ × [1 + α(T-20)] ✅")
-    print(f"- Thermischer Widerstand: R_th = ln(r_o/r_i)/(2π·λ) ✅")
-    print(f"- IEC 60287 Formel: θ_c = θ_a + W_c × ΣR_th ✅")
-    print(f"- Iterative Lösung wegen R(T) ✅")
+    print(f"- Wärmefluss: Leiter → Außen [OK]")
+    print(f"- Temperaturabhängiger Widerstand: R(T) = R₂₀ × [1 + α(T-20)] [OK]")
+    print(f"- Thermischer Widerstand: R_th = ln(r_o/r_i)/(2π·λ) [OK]")
+    print(f"- IEC 60287 Formel: θ_c = θ_a + W_c × ΣR_th [OK]")
+    print(f"- Iterative Lösung wegen R(T) [OK]")
 
 
 if __name__ == "__main__":

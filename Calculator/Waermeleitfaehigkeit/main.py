@@ -35,7 +35,7 @@ class ThermalCalculatorGUI:
         
         title_label = tk.Label(
             header,
-            text="🔥 Wärmeleitfähigkeit Calculator",
+            text="Wärmeleitfähigkeit Calculator",
             font=("Arial", 20, "bold"),
             bg="#0066CC",
             fg="white"

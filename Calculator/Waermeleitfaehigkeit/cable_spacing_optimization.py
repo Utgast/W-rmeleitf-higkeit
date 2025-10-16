@@ -233,8 +233,8 @@ class CableGroupConfiguration:
             # Setze Kabel mit gleichmäßigem Abstand
             reference_depth = self.cables[0].y
             for i, cable_pos in enumerate(self.cables):
-                cable_pos.x = i * spacing
-                cable_pos.y = reference_depth
+                cable_pos.x = float(i * spacing)
+                cable_pos.y = float(reference_depth)
             
             # Berechne Temperaturen
             temps = self.calculate_conductor_temperatures_with_mutual_heating()
@@ -383,7 +383,7 @@ def validate_mutual_heating():
             assert temp > temps[0][1], "Mittleres Kabel sollte wärmer sein"
             assert temp > temps[2][1], "Mittleres Kabel sollte wärmer sein"
     
-    print("\n✓ Test 1 bestanden: Mittleres Kabel hat höchste Temperatur")
+    print("\n[PASS] Test 1 bestanden: Mittleres Kabel hat höchste Temperatur")
     
     # Test 2: Optimierung des Kabelabstands
     print("\nTest 2: Kabelabstand-Optimierung")

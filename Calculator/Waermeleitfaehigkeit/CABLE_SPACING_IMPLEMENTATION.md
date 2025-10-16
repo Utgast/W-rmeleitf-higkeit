@@ -26,7 +26,7 @@ wobei:
 - 3 Kabel @ 0.5m Abstand, 400A je Kabel
 - Mittleres Kabel: +5.5K durch Nachbarkabel
 - Äußere Kabel: +4.2K durch Nachbarkabel
-- ✓ Physikalisch korrekt: Mittleres Kabel hat höchste Temperatur
+- [PASS] Physikalisch korrekt: Mittleres Kabel hat höchste Temperatur
 
 ## 2. Automatische Kabelabstand-Optimierung
 
@@ -175,20 +175,20 @@ temps = group.calculate_conductor_temperatures_with_mutual_heating()
 ## Validierung
 
 **Physikalische Plausibilität:**
-- ✓ Mittleres Kabel wärmer als äußere Kabel
-- ✓ Temperatur sinkt mit zunehmendem Abstand
-- ✓ Gruppenfaktor < 1.0 für enge Anordnungen
-- ✓ Gruppenfaktor → 1.0 für große Abstände
+- [PASS] Mittleres Kabel wärmer als äußere Kabel
+- [PASS] Temperatur sinkt mit zunehmendem Abstand
+- [PASS] Gruppenfaktor < 1.0 für enge Anordnungen
+- [PASS] Gruppenfaktor → 1.0 für große Abstände
 
 **Numerische Stabilität:**
-- ✓ Konvergenz in < 20 Iterationen
-- ✓ Monotone Abnahme des Residuums
-- ✓ Keine Oszillationen
+- [PASS] Konvergenz in < 20 Iterationen
+- [PASS] Monotone Abnahme des Residuums
+- [PASS] Keine Oszillationen
 
 **Grenzwerte:**
-- ✓ R_mutual → 0 für D → ∞
-- ✓ R_mutual → ∞ für D → 0 (physikalisch)
-- ✓ Symmetric matrix R_mutual[i,j] = R_mutual[j,i]
+- [PASS] R_mutual → 0 für D → ∞
+- [PASS] R_mutual → ∞ für D → 0 (physikalisch)
+- [PASS] Symmetric matrix R_mutual[i,j] = R_mutual[j,i]
 
 ## Literatur und Standards
 

@@ -78,7 +78,7 @@ def example_1_three_cables_in_row():
     
     plt.tight_layout()
     plt.savefig('cable_spacing_analysis.png', dpi=150)
-    print("\n✓ Grafik gespeichert: cable_spacing_analysis.png")
+    print("\n[SAVED] Grafik gespeichert: cable_spacing_analysis.png")
 
 
 def example_2_optimization():

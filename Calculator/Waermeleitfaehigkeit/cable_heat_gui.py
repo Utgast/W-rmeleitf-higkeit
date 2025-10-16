@@ -200,7 +200,7 @@ class CableHeatGUI:
         
         title_label = tk.Label(
             header,
-            text="🔥 HGÜ-Kabel Wärmeleitfähigkeit & Temperaturausbreitung",
+            text="HGÜ-Kabel Wärmeleitfähigkeit & Temperaturausbreitung",
             font=("Arial", 18, "bold"),
             bg="#CC0000",
             fg="white"
@@ -226,9 +226,9 @@ class CableHeatGUI:
         self.create_results_section(right_frame)
     
     def create_cable_params(self, parent):
-        """Kabelparameter-Eingabe"""
-        frame = tk.LabelFrame(parent, text="⚡ Kabelparameter", 
-                             font=("Arial", 12, "bold"), fg="#CC0000")
+        """Kabelparameter-Sektion"""
+        frame = tk.LabelFrame(parent, text="Kabelparameter", 
+                             font=("Arial", 12, "bold"))
         frame.pack(fill=tk.X, pady=(0, 10))
         
         # Grid-Layout
@@ -282,10 +282,9 @@ class CableHeatGUI:
         )
     
     def create_layers_section(self, parent):
-        """Schichten-Editor"""
-        frame = tk.LabelFrame(parent, text="📦 Schichtaufbau (von Kabel nach außen)", 
-                             font=("Arial", 12, "bold"), fg="#CC0000")
-        frame.pack(fill=tk.BOTH, expand=True, pady=(0, 10))
+        """Schichtaufbau-Sektion"""
+        frame = tk.LabelFrame(parent, text="Schichtaufbau (von Kabel nach außen)", 
+                             font=("Arial", 12, "bold"))
         
         # Schnellauswahl
         quick_frame = tk.Frame(frame)
@@ -334,11 +333,11 @@ class CableHeatGUI:
                  command=self.add_custom_layer,
                  bg="#4CAF50", fg="white", width=18).pack(side=tk.LEFT, padx=2)
         
-        tk.Button(btn_frame, text="🗑️ Schicht entfernen", 
+        tk.Button(btn_frame, text="Schicht entfernen", 
                  command=self.remove_layer,
                  bg="#f44336", fg="white", width=18).pack(side=tk.LEFT, padx=2)
         
-        tk.Button(btn_frame, text="🧹 Alle löschen", 
+        tk.Button(btn_frame, text="Alle löschen", 
                  command=self.clear_layers,
                  bg="#9E9E9E", fg="white", width=15).pack(side=tk.LEFT, padx=2)
         
@@ -346,14 +345,14 @@ class CableHeatGUI:
         calc_frame = tk.Frame(frame)
         calc_frame.pack(fill=tk.X, padx=10, pady=10)
         
-        tk.Button(calc_frame, text="🔥 WÄRMEAUSBREITUNG BERECHNEN", 
+        tk.Button(calc_frame, text="WÄRMEAUSBREITUNG BERECHNEN", 
                  command=self.calculate_heat_dissipation,
                  bg="#CC0000", fg="white", font=("Arial", 12, "bold"),
                  height=2).pack(fill=tk.X)
     
     def create_visualization_section(self, parent):
         """Visualisierungsbereich"""
-        frame = tk.LabelFrame(parent, text="📊 Temperaturverteilung", 
+        frame = tk.LabelFrame(parent, text="Temperaturverteilung", 
                              font=("Arial", 12, "bold"), fg="#CC0000")
         frame.pack(fill=tk.BOTH, expand=True, pady=(0, 10))
         
@@ -362,7 +361,7 @@ class CableHeatGUI:
     
     def create_results_section(self, parent):
         """Ergebnisbereich"""
-        frame = tk.LabelFrame(parent, text="📋 Berechnungsergebnisse", 
+        frame = tk.LabelFrame(parent, text="Berechnungsergebnisse", 
                              font=("Arial", 12, "bold"), fg="#CC0000")
         frame.pack(fill=tk.BOTH, expand=True)
         
@@ -582,13 +581,13 @@ BEURTEILUNG:
 """
         temp_diff = result['temp_difference_K']
         if temp_diff < 20:
-            output += "  ✓ Sehr gut - Geringe Erwärmung"
+            output += "  [OK] Sehr gut - Geringe Erwärmung"
         elif temp_diff < 40:
-            output += "  ⚠ Akzeptabel - Moderate Erwärmung"
+            output += "  [WARNING] Akzeptabel - Moderate Erwärmung"
         elif temp_diff < 60:
-            output += "  ⚠⚠ Grenzwertig - Hohe Erwärmung"
+            output += "  [WARNING] Grenzwertig - Hohe Erwärmung"
         else:
-            output += "  ✗ Kritisch - Sehr hohe Erwärmung!"
+            output += "  [CRITICAL] Kritisch - Sehr hohe Erwärmung!"
         
         self.results_text.delete(1.0, tk.END)
         self.results_text.insert(1.0, output)
