@@ -10,6 +10,9 @@ Professional cable thermal analysis tool implementing IEC 60287-1-1 and IEC 6028
 - **Real-time Calculations**: Instant conductor temperature and ampacity results
 - **Cable Configurations**: Pre-configured 240mm² MV and 630mm² HV cables with XLPE insulation
 - **Temperature Profiles**: Visual representation of temperature distribution across cable layers
+- **Advanced Physics Models**: Convection, radiation, skin effect, proximity effect, transient analysis
+- **Cable Spacing Optimization**: Multi-cable configurations with mutual heating calculations
+- **Grouping Factor Analysis**: Derating factors for cable groups (IEC 60287-2-1)
 - **ARCADIS Branding**: Professional corporate identity with orange color scheme
 - **Python Core Engine**: Validated calculation engine with scientific accuracy
 - **Material Database**: Comprehensive thermal properties for cable materials (XLPE, EPR, PVC, Copper, Aluminum)
@@ -22,6 +25,9 @@ Professional cable thermal analysis tool implementing IEC 60287-1-1 and IEC 6028
 - **Thermal Resistance**: Cylindrical geometry for multi-layer cables
 - **Power Losses**: I²R losses with temperature correction R(T) = R₂₀[1 + α(T-20)]
 - **External Environment**: Soil thermal resistance and burial depth considerations
+- **Mutual Heating**: IEC 60287-2-1 calculations for multiple cables
+- **Cable Spacing Optimization**: Finds optimal distance between cables for maximum current capacity
+- **Grouping Factors**: Derating factors for cable installations with multiple circuits
 
 ## 📊 Technical Standards
 
@@ -75,12 +81,16 @@ python cable_model_iec60287.py
 
 ```
 Waermeleitfaehigkeit/
-├── cable_calculator_web.html    # Standalone web application (MAIN)
-├── cable_model_iec60287.py      # Core IEC 60287 calculation engine
-├── material_database.py         # Thermal properties database
-├── thermal_calculator.py        # General thermal calculations
-├── requirements.txt             # Python dependencies
-└── README.md                    # This file
+├── cable_calculator_web.html         # Standalone web application (MAIN)
+├── cable_model_iec60287.py           # Core IEC 60287 calculation engine
+├── cable_spacing_optimization.py     # Multi-cable mutual heating & spacing optimization
+├── advanced_thermal_physics.py       # Convection, radiation, skin/proximity effects
+├── enhanced_cable_model.py           # Integration of advanced physics models
+├── material_database.py              # Thermal properties database
+├── thermal_calculator.py             # General thermal calculations
+├── requirements.txt                  # Python dependencies
+├── Grundlagen_Waermetransportberechnung_Optimierung-Kabelabstand_RML_GAE2.pdf
+└── README.md                         # This file
 ```
 
 ## 🎨 ARCADIS Corporate Identity
@@ -103,6 +113,9 @@ All calculations have been validated against:
 - 240mm² Cu/XLPE ampacity → 830A @ 90°C max ✓
 - 630mm² Cu/XLPE ampacity → 1338A @ 90°C max ✓
 - Temperature profile monotonically decreasing ✓
+- Mutual heating: 3 cables @ 0.5m spacing → middle cable +5.5K ✓
+- Cable spacing optimization: 3 cables optimal distance 1.8m ✓
+- Grouping factor @ 0.3m: 0.488 (51% derating) ✓
 
 ## 📖 Usage Example
 
