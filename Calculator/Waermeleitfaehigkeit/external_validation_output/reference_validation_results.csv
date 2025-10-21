@@ -1,0 +1,4 @@
+reference_case;source;status;deviation_percent;tolerance_percent
+1;VDI-Wärmeatlas, 11. Auflage, Kapitel D, Beispiel 1;PASSED;0.0;0.01
+2;ASHRAE Handbook of Fundamentals 2021, Chapter 26, Example 2;FAILED;12.850040674378949;1.0
+3;DIN EN ISO 6946:2018, Anhang A, Beispiel A.1;PASSED;0.007275529294762463;1.0

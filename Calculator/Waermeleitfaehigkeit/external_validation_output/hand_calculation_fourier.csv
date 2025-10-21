@@ -1,0 +1,26 @@
+HAND-BERECHNUNG: FOURIER WÄRMELEITUNG
+
+Parameter;Symbol;Wert;Einheit;Quelle
+Wärmeleitfähigkeit;λ;380.0;W/(m·K);VDI-Wärmeatlas
+Querschnittsfläche;A;1.0;m²;Eingabe
+Dicke;d;0.01;m;Eingabe
+Temperaturdifferenz;ΔT;10.0;K;Eingabe
+
+FORMEL (Fourier):
+Q̇ = λ · A · ΔT / d
+
+BERECHNUNG:
+Schritt;Beschreibung;Formel;Ergebnis;Einheit
+1;Zähler berechnen;λ · A · ΔT;3800.0;W·m
+2;Division durch Dicke;(λ · A · ΔT) / d;380000.0;W
+
+EXCEL-FORMEL (Zelle A1=λ, B1=A, C1=ΔT, D1=d):
+=A1*B1*C1/D1
+
+MATLAB-CODE:
+"lambda = 380.0;"
+"A = 1.0;"
+"delta_T = 10.0;"
+"d = 0.01;"
+"Q_dot = lambda * A * delta_T / d;"
+% Ergebnis: Q_dot = 380000.0 W

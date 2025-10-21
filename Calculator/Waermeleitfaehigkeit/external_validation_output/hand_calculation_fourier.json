@@ -1,0 +1,48 @@
+{
+  "description": "Hand calculation for Fourier heat conduction",
+  "formula": "Q̇ = λ · A · ΔT / d",
+  "parameters": {
+    "lambda": {
+      "value": 380.0,
+      "unit": "W/(m·K)",
+      "source": "VDI-Wärmeatlas"
+    },
+    "area": {
+      "value": 1.0,
+      "unit": "m²",
+      "source": "User input"
+    },
+    "thickness": {
+      "value": 0.01,
+      "unit": "m",
+      "source": "User input"
+    },
+    "temp_diff": {
+      "value": 10.0,
+      "unit": "K",
+      "source": "User input"
+    }
+  },
+  "calculation_steps": [
+    {
+      "step": 1,
+      "description": "Calculate numerator",
+      "formula": "λ · A · ΔT",
+      "result": 3800.0,
+      "unit": "W·m"
+    },
+    {
+      "step": 2,
+      "description": "Divide by thickness",
+      "formula": "(λ · A · ΔT) / d",
+      "result": 380000.0,
+      "unit": "W"
+    }
+  ],
+  "final_result": {
+    "value": 380000.0,
+    "unit": "W"
+  },
+  "excel_formula": "=A1*B1*C1/D1",
+  "matlab_code": "lambda = 380.0; A = 1.0; delta_T = 10.0; d = 0.01; Q_dot = lambda * A * delta_T / d;"
+}

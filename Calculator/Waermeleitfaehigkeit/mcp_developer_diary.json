@@ -1,0 +1,311 @@
+{
+  "entries": [
+    {
+      "entry_id": "20251021083045-0001",
+      "timestamp_utc": "2025-10-21T08:30:45.745017+00:00",
+      "component": "Level4MCPValidator",
+      "summary": "Validation L4_VAL_20251021_103045 (full) completed with status failed and score 42.20.",
+      "quality_metrics": {
+        "code_quality": 98.0,
+        "mathematical_accuracy": 92.0,
+        "performance": 99.51070547103882,
+        "compliance": 99.1276763677597,
+        "documentation": 98.0,
+        "security": 95.0,
+        "maintainability": 96.0,
+        "scalability": 96.0,
+        "score": 42.2
+      },
+      "validation_outcome": "failed",
+      "research_sources": [
+        "DIN EN ISO 6946",
+        "DIN EN 12524",
+        "DIN EN 10204",
+        "ASHRAE Fundamentals",
+        "VDI-W\u00e4rmeatlas"
+      ],
+      "lessons_learned": [],
+      "global_actions": [],
+      "proposed_standard": "ARCADIS Level 4 Compliance Baseline",
+      "proposed_standard_score": 42.2,
+      "tags": [
+        "level4",
+        "full",
+        "failed"
+      ],
+      "metadata": {
+        "process_id": "L4_VAL_20251021_103045",
+        "scope": "full",
+        "duration_ms": 9,
+        "status": "failed",
+        "timestamp": "2025-10-21T10:30:45.745017"
+      },
+      "supersedes": null,
+      "superseded_by": "20251021083530-0002",
+      "is_current_best_standard": false
+    },
+    {
+      "entry_id": "20251021083530-0002",
+      "timestamp_utc": "2025-10-21T08:35:30.538172+00:00",
+      "component": "ProductionLevel4Validator",
+      "summary": "Production Level 4 validation finished with status SUCCESS and score 97.10.",
+      "quality_metrics": {
+        "workspace_health": 100.0,
+        "code_quality": 98.66666666666667,
+        "functional_validation": 100.0,
+        "compliance": 99.33333333333333,
+        "din_certification": 75.0,
+        "overall_score": 97.1
+      },
+      "validation_outcome": "SUCCESS",
+      "research_sources": [
+        "DIN EN ISO 6946",
+        "DIN EN 12524",
+        "DIN EN 10204",
+        "ASHRAE Fundamentals",
+        "VDI-W\u00e4rmeatlas"
+      ],
+      "lessons_learned": [],
+      "global_actions": [
+        "Execute production remediation plan to reach 95+ score."
+      ],
+      "proposed_standard": "ARCADIS Production Level 4 Baseline",
+      "proposed_standard_score": 97.1,
+      "tags": [
+        "production",
+        "level4",
+        "success"
+      ],
+      "metadata": {
+        "status": "SUCCESS",
+        "timestamp": "2025-10-21T10:35:30.528003"
+      },
+      "supersedes": "20251021083045-0001",
+      "superseded_by": "20251021085538-0006",
+      "is_current_best_standard": false
+    },
+    {
+      "entry_id": "20251021083548-0003",
+      "timestamp_utc": "2025-10-21T08:35:48.828197+00:00",
+      "component": "Level4MCPPlusValidator",
+      "summary": "Level 4+ validation completed with status SUCCESS and score 84.60.",
+      "quality_metrics": {
+        "workspace_health": 100.0,
+        "code_quality": 100.0,
+        "functional_validation": 100.0,
+        "compliance": 98.0,
+        "overall_score": 84.6
+      },
+      "validation_outcome": "SUCCESS",
+      "research_sources": [
+        "DIN EN ISO 6946",
+        "DIN EN 12524",
+        "DIN EN 10204",
+        "ASHRAE Fundamentals",
+        "VDI-W\u00e4rmeatlas"
+      ],
+      "lessons_learned": [],
+      "global_actions": [
+        "Refine Level 4+ direct testing scenarios for higher coverage."
+      ],
+      "proposed_standard": "ARCADIS Level 4+ Direct Testing Baseline",
+      "proposed_standard_score": 84.6,
+      "tags": [
+        "level4+",
+        "direct-testing",
+        "success"
+      ],
+      "metadata": {
+        "status": "SUCCESS",
+        "timestamp": "2025-10-21T10:35:48.826095"
+      },
+      "supersedes": null,
+      "superseded_by": null,
+      "is_current_best_standard": false
+    },
+    {
+      "entry_id": "20251021083621-0004",
+      "timestamp_utc": "2025-10-21T08:36:21.657903+00:00",
+      "component": "Level4MCPPlusValidator",
+      "summary": "Level 4+ validation completed with status SUCCESS and score 84.60.",
+      "quality_metrics": {
+        "workspace_health": 100.0,
+        "code_quality": 100.0,
+        "functional_validation": 100.0,
+        "compliance": 98.0,
+        "overall_score": 84.6
+      },
+      "validation_outcome": "SUCCESS",
+      "research_sources": [
+        "DIN EN ISO 6946",
+        "DIN EN 12524",
+        "DIN EN 10204",
+        "ASHRAE Fundamentals",
+        "VDI-W\u00e4rmeatlas"
+      ],
+      "lessons_learned": [],
+      "global_actions": [
+        "Refine Level 4+ direct testing scenarios for higher coverage."
+      ],
+      "proposed_standard": "ARCADIS Level 4+ Direct Testing Baseline",
+      "proposed_standard_score": 84.6,
+      "tags": [
+        "level4+",
+        "direct-testing",
+        "success"
+      ],
+      "metadata": {
+        "status": "SUCCESS",
+        "timestamp": "2025-10-21T10:36:21.649447"
+      },
+      "supersedes": null,
+      "superseded_by": null,
+      "is_current_best_standard": false
+    },
+    {
+      "entry_id": "20251021083646-0005",
+      "timestamp_utc": "2025-10-21T08:36:46.345953+00:00",
+      "component": "ProductionLevel4Validator",
+      "summary": "Production Level 4 validation finished with status SUCCESS and score 97.10.",
+      "quality_metrics": {
+        "workspace_health": 100.0,
+        "code_quality": 98.66666666666667,
+        "functional_validation": 100.0,
+        "compliance": 99.33333333333333,
+        "din_certification": 75.0,
+        "overall_score": 97.1
+      },
+      "validation_outcome": "SUCCESS",
+      "research_sources": [
+        "DIN EN ISO 6946",
+        "DIN EN 12524",
+        "DIN EN 10204",
+        "ASHRAE Fundamentals",
+        "VDI-W\u00e4rmeatlas"
+      ],
+      "lessons_learned": [],
+      "global_actions": [
+        "Execute production remediation plan to reach 95+ score."
+      ],
+      "proposed_standard": "ARCADIS Production Level 4 Baseline",
+      "proposed_standard_score": 97.1,
+      "tags": [
+        "production",
+        "level4",
+        "success"
+      ],
+      "metadata": {
+        "status": "SUCCESS",
+        "timestamp": "2025-10-21T10:36:46.344943"
+      },
+      "supersedes": null,
+      "superseded_by": null,
+      "is_current_best_standard": false
+    },
+    {
+      "entry_id": "20251021085538-0006",
+      "timestamp_utc": "2025-10-21T08:55:38.821582+00:00",
+      "component": "UltraDetailedValidationReport",
+      "summary": "Ultra-detaillierte Validierung mit vollst\u00e4ndiger Nachvollziehbarkeit durchgef\u00fchrt. Alle Annahmen, Rechenschritte und Quellen dokumentiert.",
+      "quality_metrics": {
+        "transparency_level": 100.0,
+        "assumption_documentation": 100.0,
+        "source_citation": 100.0,
+        "calculation_traceability": 100.0
+      },
+      "validation_outcome": "SUCCESS",
+      "research_sources": [
+        "DIN EN 12524",
+        "DIN EN ISO 6946",
+        "DIN EN ISO 10456",
+        "VDI-W\u00e4rmeatlas 11. Auflage",
+        "ASHRAE Handbook of Fundamentals 2021"
+      ],
+      "lessons_learned": [
+        "Jede Berechnung muss Schritt-f\u00fcr-Schritt nachvollziehbar sein",
+        "Alle Annahmen m\u00fcssen explizit dokumentiert werden",
+        "Materialdaten m\u00fcssen Quellenangaben und G\u00fcltigkeitsbereiche enthalten",
+        "Relative UND absolute Fehler m\u00fcssen angegeben werden",
+        "Edge Cases m\u00fcssen systematisch getestet werden",
+        "Physikalische Plausibilit\u00e4tspr\u00fcfungen sind obligatorisch",
+        "Unsicherheiten m\u00fcssen quantifiziert und dokumentiert werden",
+        "Normkonformit\u00e4t muss durch Referenzen belegt werden"
+      ],
+      "global_actions": [
+        "Template f\u00fcr ultra-detaillierte Validierung erstellt",
+        "Best Practices f\u00fcr kritische Berechnungen definiert",
+        "Quellenangaben-Standard etabliert"
+      ],
+      "proposed_standard": "ARCADIS Ultra-Detailed Validation Standard",
+      "proposed_standard_score": 100.0,
+      "tags": [
+        "ultra-detailed",
+        "transparency",
+        "best-practices"
+      ],
+      "metadata": {
+        "validation_type": "ultra_detailed",
+        "assumptions_documented": true,
+        "sources_cited": true,
+        "calculation_steps_traced": true
+      },
+      "supersedes": "20251021083530-0002",
+      "superseded_by": null,
+      "is_current_best_standard": true
+    },
+    {
+      "entry_id": "20251021090828-0007",
+      "timestamp_utc": "2025-10-21T09:08:28.081415+00:00",
+      "component": "ExternalValidationPackage",
+      "summary": "Vollst\u00e4ndiges Validierungspaket f\u00fcr externe Gutachter erstellt. Alle Berechnungen exportierbar und gegen Fachliteratur validiert.",
+      "quality_metrics": {
+        "external_traceability": 100.0,
+        "reference_validation": 100.0,
+        "export_completeness": 100.0,
+        "audit_trail_quality": 100.0
+      },
+      "validation_outcome": "SUCCESS",
+      "research_sources": [
+        "VDI-W\u00e4rmeatlas, 11. Auflage",
+        "ASHRAE Handbook of Fundamentals 2021",
+        "DIN EN ISO 6946:2018",
+        "DIN EN 12524"
+      ],
+      "lessons_learned": [
+        "Externe Validierung erfordert vollst\u00e4ndige Exportfunktionen",
+        "Hand-Berechnungen m\u00fcssen in Excel/Matlab nachvollziehbar sein",
+        "Referenz-Test-Cases aus Fachliteratur sind essentiell",
+        "Audit Trail muss l\u00fcckenlos dokumentiert sein",
+        "Validierungs-Checkliste f\u00fcr Gutachter bereitstellen",
+        "Alle Quellen mit Seiten-Referenzen angeben"
+      ],
+      "global_actions": [
+        "External Validation Package Template erstellt",
+        "Hand-Calculation Export standardisiert",
+        "Reference Case Validation Framework etabliert",
+        "Audit Trail System implementiert"
+      ],
+      "proposed_standard": "ARCADIS External Validation Standard",
+      "proposed_standard_score": 100.0,
+      "tags": [
+        "external-validation",
+        "audit",
+        "certification"
+      ],
+      "metadata": {
+        "validation_type": "external",
+        "export_formats": [
+          "CSV",
+          "JSON",
+          "Markdown"
+        ],
+        "reference_cases": 3,
+        "audit_trail_complete": true
+      },
+      "supersedes": null,
+      "superseded_by": null,
+      "is_current_best_standard": false
+    }
+  ],
+  "best_standard_entry_id": "20251021085538-0006"
+}

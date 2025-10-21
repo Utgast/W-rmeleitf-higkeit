@@ -1,0 +1,9 @@
+material;lambda_W_mK;density_kg_m3;specific_heat_J_kgK;source;norm;validity;uncertainty_percent
+Kupfer;380.0;8900;380;DIN EN 12524 / VDI-Wärmeatlas;DIN EN 12524;Standard conditions (20°C, dry);±5% (typical)
+Aluminium;160.0;2700;880;DIN EN 12524 / VDI-Wärmeatlas;DIN EN 12524;Standard conditions (20°C, dry);±5% (typical)
+Beton (Normal);2.1;2400;1000;DIN EN 12524 / VDI-Wärmeatlas;DIN EN 12524;Standard conditions (20°C, dry);±5% (typical)
+Polystyrol (EPS);0.035;30;1500;DIN EN 12524 / VDI-Wärmeatlas;DIN EN 12524;Standard conditions (20°C, dry);±5% (typical)
+Mineralwolle;0.04;100;840;DIN EN 12524 / VDI-Wärmeatlas;DIN EN 12524;Standard conditions (20°C, dry);±5% (typical)
+Ziegel (Vollziegel);0.8;1800;1000;DIN EN 12524 / VDI-Wärmeatlas;DIN EN 12524;Standard conditions (20°C, dry);±5% (typical)
+Holz (Weich);0.13;500;1600;DIN EN 12524 / VDI-Wärmeatlas;DIN EN 12524;Standard conditions (20°C, dry);±5% (typical)
+PE (Polyethylen);0.4;950;2300;DIN EN 12524 / VDI-Wärmeatlas;DIN EN 12524;Standard conditions (20°C, dry);±5% (typical)

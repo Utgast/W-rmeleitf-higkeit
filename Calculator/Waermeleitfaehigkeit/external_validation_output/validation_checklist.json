@@ -1,0 +1,47 @@
+[
+  {
+    "category": "Mathematische Korrektheit",
+    "items": [
+      "Fourier-Gleichung korrekt implementiert",
+      "U-Wert nach ISO 6946 korrekt berechnet",
+      "Numerische Stabilität gegeben",
+      "Maschinengenauigkeit erreicht"
+    ]
+  },
+  {
+    "category": "Material-Datenbank",
+    "items": [
+      "Alle Werte mit Quellenangaben",
+      "Normen-Referenzen vorhanden",
+      "Gültigkeitsbereiche definiert",
+      "Unsicherheiten quantifiziert"
+    ]
+  },
+  {
+    "category": "Referenz-Validierung",
+    "items": [
+      "Vergleich mit VDI-Wärmeatlas",
+      "Vergleich mit ASHRAE Handbook",
+      "Vergleich mit ISO 6946 Beispielen",
+      "Alle Abweichungen < 1%"
+    ]
+  },
+  {
+    "category": "Dokumentation",
+    "items": [
+      "Alle Annahmen dokumentiert",
+      "Alle Rechenschritte nachvollziehbar",
+      "Export-Formate verfügbar (CSV, JSON)",
+      "Hand-Berechnungen bereitgestellt"
+    ]
+  },
+  {
+    "category": "Audit & Compliance",
+    "items": [
+      "Audit Trail vollständig",
+      "Nachverfolgbarkeit gegeben",
+      "ISO 9001 konform",
+      "Externe Validierung möglich"
+    ]
+  }
+]

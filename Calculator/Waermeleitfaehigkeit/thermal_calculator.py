@@ -28,13 +28,23 @@ class ThermalCalculator:
         Returns:
             dict: Wärmestrom in W und weitere Details
         """
+        # Eingabevalidierung
+        if not material_name or not isinstance(material_name, str):
+            raise ValueError("Materialname muss ein nicht-leerer String sein")
+        
+        if area <= 0:
+            raise ValueError("Fläche muss größer als 0 sein")
+        
+        if thickness <= 0:
+            raise ValueError("Dicke muss größer als 0 sein")
+        
         lambda_value = self.db.get_lambda(material_name)
         
         if lambda_value is None:
             raise ValueError(f"Material '{material_name}' nicht gefunden")
         
-        if thickness <= 0:
-            raise ValueError("Dicke muss größer als 0 sein")
+        if lambda_value <= 0:
+            raise ValueError(f"Ungültiger λ-Wert für Material '{material_name}': {lambda_value}")
         
         # Wärmestrom Q in Watt
         heat_flow = lambda_value * area * temp_diff / thickness
@@ -65,6 +75,10 @@ class ThermalCalculator:
         Returns:
             dict: U-Wert und weitere Details
         """
+        # Eingabevalidierung
+        if not layers or len(layers) == 0:
+            raise ValueError("Layer-Liste darf nicht leer sein")
+        
         # Wärmeübergangswiderstände (DIN EN ISO 6946)
         R_si = 0.13  # Innerer Wärmeübergangswiderstand (m²K/W)
         R_se = 0.04  # Äußerer Wärmeübergangswiderstand (m²K/W)
@@ -112,6 +126,19 @@ class ThermalCalculator:
         Returns:
             dict: Temperaturverteilung und Details
         """
+        # Eingabevalidierung
+        if not layers or len(layers) == 0:
+            raise ValueError("Layer-Liste für Temperaturverteilung darf nicht leer sein")
+        
+        for i, layer in enumerate(layers):
+            if len(layer) != 3:
+                raise ValueError(f"Layer {i} muss 3 Werte haben: (material, thickness, points)")
+            material, thickness, points = layer
+            if thickness <= 0:
+                raise ValueError(f"Dicke in Layer {i} muss größer als 0 sein")
+            if points <= 0:
+                raise ValueError(f"Anzahl Punkte in Layer {i} muss größer als 0 sein")
+        
         u_result = self.calculate_u_value([(mat, thick) for mat, thick, _ in layers])
         u_value = u_result["u_value_W_m2K"]
         

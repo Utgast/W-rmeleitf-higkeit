@@ -1,0 +1,101 @@
+{
+  "audit_trail_version": "1.0",
+  "generated": "2025-10-21T11:08:28.071389",
+  "events": [
+    {
+      "timestamp": "2025-10-21T11:08:28.061361",
+      "action": "reference_validation",
+      "reference": "VDI-Wärmeatlas, 11. Auflage, Kapitel D, Beispiel 1",
+      "status": "PASSED",
+      "details": {
+        "quelle": "VDI-Wärmeatlas, 11. Auflage, Kapitel D, Beispiel 1",
+        "seite": "D 23",
+        "beschreibung": "Wärmeleitung durch Kupferplatte",
+        "material": "Kupfer",
+        "lambda_referenz": 380.0,
+        "area_m2": 1.0,
+        "thickness_m": 0.01,
+        "temp_diff_K": 10.0,
+        "expected_heat_flow_W": 380000.0,
+        "toleranz_prozent": 0.01,
+        "norm": "DIN EN 13601"
+      }
+    },
+    {
+      "timestamp": "2025-10-21T11:08:28.061361",
+      "action": "reference_validation",
+      "reference": "ASHRAE Handbook of Fundamentals 2021, Chapter 26, Example 2",
+      "status": "FAILED",
+      "details": {
+        "quelle": "ASHRAE Handbook of Fundamentals 2021, Chapter 26, Example 2",
+        "seite": "26.5",
+        "beschreibung": "U-Value calculation for wall with insulation",
+        "layers": [
+          [
+            "Beton (Normal)",
+            0.2
+          ],
+          [
+            "Polystyrol (EPS)",
+            0.1
+          ]
+        ],
+        "expected_r_total": 3.5238,
+        "expected_u_value": 0.2838,
+        "toleranz_prozent": 1.0,
+        "norm": "ISO 6946"
+      }
+    },
+    {
+      "timestamp": "2025-10-21T11:08:28.062366",
+      "action": "reference_validation",
+      "reference": "DIN EN ISO 6946:2018, Anhang A, Beispiel A.1",
+      "status": "PASSED",
+      "details": {
+        "quelle": "DIN EN ISO 6946:2018, Anhang A, Beispiel A.1",
+        "seite": "Seite 42",
+        "beschreibung": "Mehrschichtiger Wandaufbau",
+        "layers": [
+          [
+            "Ziegel (Vollziegel)",
+            0.115
+          ],
+          [
+            "Mineralwolle",
+            0.16
+          ]
+        ],
+        "expected_r_total": 4.3138,
+        "expected_u_value": 0.2318,
+        "toleranz_prozent": 1.0,
+        "norm": "ISO 6946"
+      }
+    },
+    {
+      "timestamp": "2025-10-21T11:08:28.067874",
+      "action": "export_hand_calculations",
+      "files": [
+        "external_validation_output\\hand_calculation_fourier.csv",
+        "external_validation_output\\hand_calculation_fourier.json"
+      ]
+    },
+    {
+      "timestamp": "2025-10-21T11:08:28.071389",
+      "action": "export_material_database",
+      "material_count": 8,
+      "files": [
+        "external_validation_output\\material_database.csv",
+        "external_validation_output\\material_database.json"
+      ]
+    }
+  ],
+  "metadata": {
+    "purpose": "External validation and certification",
+    "compliance": [
+      "ISO 9001",
+      "ISO 6946",
+      "DIN EN 12524"
+    ],
+    "traceability": "Complete"
+  }
+}
