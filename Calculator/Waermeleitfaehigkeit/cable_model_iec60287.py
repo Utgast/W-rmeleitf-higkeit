@@ -153,7 +153,9 @@ class CableConfiguration:
             Tuple: (Leitertemperatur °C, Detail-Dictionary)
         """
         # Starttemperatur
-        t_conductor = self.max_conductor_temp
+        t_conductor = self.max_conductor_temp 
+
+        #Start-Temperatur sollte self.ambient_temp sein oder eine User Eingabe. Für alle kommenden Rechenschritte ist die Start-Temperatur dann jeweils vorherig berechnete t_new
         
         # Initialisierung für Robustheit
         losses = 0.0
@@ -161,7 +163,7 @@ class CableConfiguration:
         iteration = 0
         
         # Iterative Berechnung (max 10 Iterationen)
-        for iteration in range(10):
+        for iteration in range(10): #lieber erstmal die Möglichkeit geben eine Fehlertoleranz anzugeben (nl_tol, l_tol) und maximale Iterationen (max_nl_it, max_l_it)
             # Verluste bei aktueller Temperatur
             losses = self.calculate_conductor_losses(temperature=t_conductor)
             
@@ -265,7 +267,7 @@ class CableMaterialLibrary:
         "temp_coefficient": 0.00393  # 1/K
     }
     
-    ALUMINUM = {
+    ALUMINUM = { #Aluminium :)
         "lambda": 230.0,  # W/(m·K)
         "resistivity": 0.0283,  # Ω·mm²/m bei 20°C
         "temp_coefficient": 0.00403  # 1/K
